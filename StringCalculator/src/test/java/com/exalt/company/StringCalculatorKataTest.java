@@ -1,43 +1,29 @@
 package com.exalt.company;
 
+import java.util.stream.Stream;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-
 class StringCalculatorKataTest {
-    @Test
-    void numbersIsNullShouldReturnZero() {
+    @ParameterizedTest
+    @MethodSource
+    void sumNumbersSeparatedByComa(String numbers, int result) {
         StringCalculatorKata stringCalculator = new StringCalculatorKata();
-        assertEquals(0, stringCalculator.add(null));
+        assertEquals(result, stringCalculator.add(numbers));
     }
 
-	@Test
-    void numbersIsEmptyShouldReturnZero() {
-        StringCalculatorKata stringCalculator = new StringCalculatorKata();
-        assertEquals(0, stringCalculator.add(""));
+    private static Stream<Arguments> sumNumbersSeparatedByComa() {
+        return Stream.of(
+                Arguments.of(null, 0),
+                Arguments.of("", 0),
+                Arguments.of("1", 1),
+                Arguments.of("1,2", 3),
+                Arguments.of("1,2,5,9", 17),
+                Arguments.of("1,2,5,9,1,10,11,1,1,1", 42));
     }
 
-    @Test
-    void numbersContainsOneNumberShouldReturnNumbers() {
-        StringCalculatorKata stringCalculator = new StringCalculatorKata();
-        assertEquals(1, stringCalculator.add("1"));
-    }
-
-    @Test
-    void numbersContainsTwoNumberShouldReturnTheSumOfNumbers() {
-        StringCalculatorKata stringCalculator = new StringCalculatorKata();
-        assertEquals(3, stringCalculator.add("1,2"));
-    }
-
-    @Test
-    void numbersContainsFourNumberShouldReturnTheSumOfNumbers() {
-        StringCalculatorKata stringCalculator = new StringCalculatorKata();
-        assertEquals(17, stringCalculator.add("1,2,5,9"));
-    }
-
-    @Test
-    void numbersContainsTenNumberShouldReturnTheSumOfNumbers() {
-        StringCalculatorKata stringCalculator = new StringCalculatorKata();
-        assertEquals(42, stringCalculator.add("1,2,5,9,1,10,11,1,1,1"));
-    }
 }
