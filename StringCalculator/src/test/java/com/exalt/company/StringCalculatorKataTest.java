@@ -24,7 +24,8 @@ class StringCalculatorKataTest {
                 Arguments.of("1,2", 3),
                 Arguments.of("1,2,5,9", 17),
                 Arguments.of("1,2,5,9,1,10,11,1,1,1", 42),
-                Arguments.of("1\n2,3", 6));
+                Arguments.of("1\n2,3", 6),
+                Arguments.of("//;\n1;2", 3));
     }
 
 }
