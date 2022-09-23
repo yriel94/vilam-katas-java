@@ -10,7 +10,7 @@ public class StringCalculatorKata {
             return 0;
         }
 
-        String[] separatedNumbers = numbers.split(",");
+        String[] separatedNumbers = numbers.split("[,\\n]");
         List<String> listOfNumbers = Arrays.asList(separatedNumbers);
 
         return listOfNumbers.stream()
